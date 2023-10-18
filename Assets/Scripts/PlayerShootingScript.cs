@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class PlayerShootingScript : MonoBehaviour
 {
-    public GameObject projectile;
+    public Transform projectile;
     public string shootButton;
-    public Transform firePoint;
     public float shootCooldown;
-    public float booletSpeed;
     float shootCooldownTimer;
     // Update is called once per frame
     void Update()
@@ -24,9 +22,7 @@ public class PlayerShootingScript : MonoBehaviour
 
     void shoot()
     {
-        GameObject newProjectile = Instantiate(projectile, firePoint.position, firePoint.rotation);
-        Rigidbody2D rb = newProjectile.GetComponent<Rigidbody2D>();
-        rb.velocity = firePoint.up * booletSpeed;
+        Instantiate(projectile, transform.position, Quaternion.identity);
         shootCooldownTimer = 0;
     }
 }

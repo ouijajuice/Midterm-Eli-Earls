@@ -18,7 +18,7 @@ public class PlayerMovementScript : MonoBehaviour
     {
 
         float xMov;
-
+       
         xMov = Input.GetAxisRaw("Horizontal");
 
         Vector2 newPosition = rigibody.position + new Vector2(xMov * speed * Time.deltaTime, 0);
