@@ -2,14 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileScript : MonoBehaviour
+public class EnemyProjectile : MonoBehaviour
 {
     public float speed;
     public float lifetime;
     private float lifetimeCounter = 0;
 
-    public Transform powerupPrefab;
-    public float powerupSpawnChance = 0.2f;
 
     // Update is called once per frame
     void Update()
@@ -33,17 +31,7 @@ public class ProjectileScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         //Debug.Log("trigger func running");
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            Destroy(other.gameObject);
-            Destroy(gameObject);
-            if (Random.value <= powerupSpawnChance)
-            {
-                Instantiate(powerupPrefab, other.transform.position, Quaternion.identity);
-            }
-        }
-
-        if (other.gameObject.CompareTag("Wall"))
+        if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Wall"))
         {
             Destroy(other.gameObject);
             Destroy(gameObject);

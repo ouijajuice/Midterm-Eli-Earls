@@ -8,6 +8,13 @@ public class PlayerShootingScript : MonoBehaviour
     public string shootButton;
     public float shootCooldown;
     float shootCooldownTimer;
+
+    private AudioSource audioSource;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -20,8 +27,14 @@ public class PlayerShootingScript : MonoBehaviour
         }
     }
 
+    public void UpdateShootCooldown(float newCooldown)
+    {
+        shootCooldown = newCooldown;
+    }
+
     void shoot()
     {
+        audioSource.Play();
         Instantiate(projectile, transform.position, Quaternion.identity);
         shootCooldownTimer = 0;
     }
