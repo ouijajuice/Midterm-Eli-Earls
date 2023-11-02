@@ -27,4 +27,14 @@ public class ProjectileScript : MonoBehaviour
         newPos += transform.up * speed * Time.deltaTime;
         transform.position = newPos;
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("trigger func running");
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+        }
+    }
 }
